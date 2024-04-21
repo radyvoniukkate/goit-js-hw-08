@@ -1,4 +1,3 @@
-
 const images = [
   {
     preview: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
@@ -56,8 +55,7 @@ const list = images
       class="gallery-image"
       src="${preview}"
       data-source="${original}"
-      alt="${description}"
-    />
+      alt="${description}" />
   </a>
 </li>`
   )
@@ -66,25 +64,13 @@ const list = images
 gallery.innerHTML = list;
 const galleryImage = document.querySelectorAll('.gallery-item');
 
-galleryImage.forEach(image => {
-  image.addEventListener('click', function (event) {
-    event.preventDefault();
-  });
-});
-
 gallery.addEventListener('click', function (event) {
+  event.preventDefault();
   if (event.target.classList.contains('gallery-image')) {
     const largeImageSource = event.target.dataset.source;
-    console.log(largeImageSource);
-  }
-});
-
-
-gallery.addEventListener('click', function (event) {
-  if (event.target.classList.contains('gallery-image')) {
-    const largeImageSource = event.target.dataset.source;
+    const largeImgAlt = event.target.getAttribute('alt');
     const instance = basicLightbox.create(`
-      <img src="${largeImageSource}" width="1112" height="640">
+      <img src="${largeImageSource}" alt="${largeImgAlt}" width="1112" height="640">
     `);
     instance.show();
   }
